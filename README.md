@@ -210,23 +210,26 @@ Grab the IP Address of the phone from its setting page.
 
 On your technician machine, ssh <user>@<phone IP>. You should be connected to a machine with the hostname vm.
 
-## GUI via VNC
+## GUI via VNC, Xserver XSDL
 
 In the guest
 
 ```
 $ sudo apt install tightvncserver, xfce4
-$ vncserver
 ```
-
-Setting vncserver
-
 Grab the IP Address of the phone from its setting page.
 
 In a new session termux
 ```
 # ssh -L 5901:127.0.0.1:5901 -C -N -l <user> <phone IP>
 ```
+For vnc
+```
+$ vncserver
+```
+
+Setting vncserver
+
 Install vncviewer app on your phone
 
 Open vncviewer app
@@ -236,6 +239,12 @@ localhost
 5901
 
 vncserver's password
+
+For Xserver XSDL
+
+Install Xserver XSDL app
+
+run commands from screen app
 
 ## Shared dir
 
