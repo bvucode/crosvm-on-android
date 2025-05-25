@@ -209,6 +209,32 @@ SSH into the Phone
 Grab the IP Address of the phone from its setting page.
 
 On your technician machine, ssh <user>@<phone IP>. You should be connected to a machine with the hostname vm.
+# Network(Optional)
+Setup a persistent TAP interface
+In Termux
+```
+cd kvm
+nvim network.sh
+```
+Set the value to the following
+```
+#!/data/data/com.termux/files/usr/bin/sh
+# https://crosvm.dev/book/devices/net.html
+ip tuntap add mode tap user $USER vnet_hdr crosvm_tap
+ip addr add 192.168.10.1/24 dev crosvm_tap
+ip link set crosvm_tap up
+
+#routing
+sysctl net.ipv4.ip_forward=1
+HOST_DEV=$(ip route get 8.8.8.8 | awk -- '{printf $5}')
+iptables -t nat -A POSTROUTING -o "${HOST_DEV}" -j MASQUERADE
+iptables -A FORWARD -i "${HOST_DEV}" -o crosvm_tap -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i crosvm_tap -o "${HOST_DEV}" -j ACCEPT
+```
+```
+# chmod +x ./network.sh
+```
+SSH <user>@192.168.10.1
 
 ## GUI via VNC, Xserver XSDL
 
