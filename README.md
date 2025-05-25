@@ -250,7 +250,7 @@ ssh <user>@192.168.10.1
 In the guest
 
 ```
-$ sudo apt install tightvncserver, xfce4
+$ sudo apt install tightvncserver, xfce4, xfce4-terminal, xfce4-goodies
 ```
 
 In a new session termux
