@@ -104,7 +104,7 @@ In a new session termux
 ```
 # su
 # cd /apex/com.android.virt/bin
-# ./crosvm run --disable-sandbox -p 'init=/sbin/init' --rwroot /data/data/com.termux/files/home/kvm/debian.img /data/data/com.termux/files/home/kvm/Image --vsock 3 --mem 1024 --cpus 2
+# ./crosvm run --disable-sandbox --net tap-name=crosvm_tap -s  /data/data/com.termux/files/home/kvm/crosvm.sock --shared-dir "/data/data/com.termux/files/home/host_shared_dir:my_shared_tag:type=fs" -p 'init=/sbin/init' --rwroot /data/data/com.termux/files/home/kvm/debian.img /data/data/com.termux/files/home/kvm/Image --vsock 3 --mem 1024 --cpus 4
 ```
 
 In the guest
@@ -179,7 +179,7 @@ Set the value to the following
 ```
 #!/data/data/com.termux/files/usr/bin/sh
 
-/apex/com.android.virt/bin/crosvm run --disable-sandbox -p 'init=/sbin/init' --rwroot /data/data/com.termux/files/home/kvm/debian.img /data/data/com.termux/files/home/kvm/Image --vsock 3 --mem 1024 --cpus 2
+/apex/com.android.virt/bin/crosvm run --disable-sandbox --net tap-name=crosvm_tap -s  /data/data/com.termux/files/home/kvm/crosvm.sock --shared-dir "/data/data/com.termux/files/home/host_shared_dir:my_shared_tag:type=fs" -p 'init=/sbin/init' --rwroot /data/data/com.termux/files/home/kvm/debian.img /data/data/com.termux/files/home/kvm/Image --vsock 3 --mem 1024 --cpus 4
 ```
 ```
 $ sudo chmod +x ./start-vm.sh
@@ -201,6 +201,7 @@ In termux
 ```
 In a new session termux
 ```
+# su
 # cd /kvm/vm-host
 # ./start-vm.sh
 ```
@@ -209,6 +210,7 @@ SSH into the Phone
 Grab the IP Address of the phone from its setting page.
 
 On your technician machine, ssh <user>@<phone IP>. You should be connected to a machine with the hostname vm.
+
 # Network(Optional)
 Setup a persistent TAP interface
 
@@ -234,9 +236,12 @@ iptables -A FORWARD -i "${HOST_DEV}" -o crosvm_tap -m state --state RELATED,ESTA
 iptables -A FORWARD -i crosvm_tap -o "${HOST_DEV}" -j ACCEPT
 ```
 ```
+# su
 # chmod +x ./network.sh
+# ./network.sh
 ```
-SSH <user>@192.168.10.1
+SSH 
+<user>@192.168.10.1
 
 ## GUI via VNC, Xserver XSDL
 
@@ -245,13 +250,12 @@ In the guest
 ```
 $ sudo apt install tightvncserver, xfce4
 ```
-Grab the IP Address of the phone from its setting page.
 
 In a new session termux
 ```
-# ssh -L 5901:127.0.0.1:5901 -C -N -l <user> <phone IP>
+# ssh -L 5901:127.0.0.1:5901 -C -N -l <user> 192.168.10.1
 ```
-For vnc
+For VNC
 ```
 $ vncserver
 ```
