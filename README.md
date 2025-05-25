@@ -235,6 +235,7 @@ iptables -t nat -A POSTROUTING -o "${HOST_DEV}" -j MASQUERADE
 iptables -A FORWARD -i "${HOST_DEV}" -o crosvm_tap -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A FORWARD -i crosvm_tap -o "${HOST_DEV}" -j ACCEPT
 ```
+In a new session termux
 ```
 # su
 # chmod +x ./network.sh
@@ -242,7 +243,7 @@ iptables -A FORWARD -i crosvm_tap -o "${HOST_DEV}" -j ACCEPT
 ```
 SSH
 ```
-# ssh <user>@192.168.10.1
+ssh <user>@192.168.10.1
 ```
 ## GUI via VNC, Xserver XSDL
 
