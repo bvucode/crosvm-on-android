@@ -240,8 +240,7 @@ iptables -A FORWARD -i crosvm_tap -o "${HOST_DEV}" -j ACCEPT
 # chmod +x ./network.sh
 # ./network.sh
 ```
-SSH 
-<user>@192.168.10.1
+ssh  <user>@192.168.10.1
 
 ## GUI via VNC, Xserver XSDL
 
@@ -265,18 +264,19 @@ Setting vncserver
 Install vncviewer app on your phone
 
 Open vncviewer app
-
+```
 localhost
 
 5901
 
 vncserver's password
+```
 
 For Xserver XSDL
 
 Install Xserver XSDL app
 
-run commands from screen app
+Run commands from screen app
 
 ## Shared dir
 
