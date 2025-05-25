@@ -240,8 +240,10 @@ iptables -A FORWARD -i crosvm_tap -o "${HOST_DEV}" -j ACCEPT
 # chmod +x ./network.sh
 # ./network.sh
 ```
-ssh  <user>@192.168.10.1
-
+SSH
+```
+# ssh <user>@192.168.10.1
+```
 ## GUI via VNC, Xserver XSDL
 
 In the guest
