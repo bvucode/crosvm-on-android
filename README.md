@@ -211,14 +211,16 @@ Grab the IP Address of the phone from its setting page.
 On your technician machine, ssh <user>@<phone IP>. You should be connected to a machine with the hostname vm.
 # Network(Optional)
 Setup a persistent TAP interface
+
 In Termux
 ```
-cd kvm
-nvim network.sh
+# cd kvm
+# nvim network.sh
 ```
 Set the value to the following
 ```
 #!/data/data/com.termux/files/usr/bin/sh
+
 # https://crosvm.dev/book/devices/net.html
 ip tuntap add mode tap user $USER vnet_hdr crosvm_tap
 ip addr add 192.168.10.1/24 dev crosvm_tap
