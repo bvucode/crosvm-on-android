@@ -2,14 +2,14 @@
 
 Guide originally by Christopher L. Crutchfield. Modified and added to by Bulat Valiakhmetov.
 
-## Good to Mention
+### Good to Mention
 
 * The device used here is a Xiaomi Poco C65 phone running Android 15
 * Unlock bootloader
 * You need a [rooted](https://en.m.wikipedia.org/wiki/Rooting_(Android)) device
 * If you damage your device in any way, you are all responsible for it!
 
-## Install dependencies
+### Install dependencies
 ```
 $ sudo apt install build-essential debootstrap qemu-user-static gcc-aarch64-linux-gnu atftpd nfs-kernel-server fdisk libcap-dev libgbm-dev libvirglrenderer-dev libwayland-bin libwayland-dev pkg-config protobuf-compiler bc bison flex libssl-dev make libc6-dev libncurses5-dev crossbuild-essential-arm64
 
@@ -20,7 +20,7 @@ Add this to your ~/.bashrc
 
 export PATH=$PATH:/usr/local/go/bin
 
-## Build the kernel
+### Build the kernel
 
 Grab a kernel tarball from kernel.org.
 ```
@@ -34,19 +34,19 @@ $ make ARCH=arm64 defconfig
 $ make menuconfig
 $ CROSS_COMPILE=aarch64-linux-gnu- make ARCH=arm64 -j 8
 ```
-## Cross-compile gVisor Proxy for aarch64
+### Cross-compile gVisor Proxy for aarch64
 
 git clone https://github.com/containers/gvisor-tap-vsock gvisor-tap-vsock-arm64
 
 GOARCH=arm64 make
 
-## Cross-compile gVisor Proxy for Android
+### Cross-compile gVisor Proxy for Android
 
 git clone https://github.com/containers/gvisor-tap-vsock gvisor-tap-vsock-android
 
 GOOS=android GOARCH=arm64 make
 
-## Create a rootfs
+### Create a rootfs
 ```
 $ mkdir vm-host
 $ dd if=/dev/zero of=vm-host.img bs=1M count=1000
@@ -80,7 +80,7 @@ $ sudo umount ./rootfs
 $ sudo umount ./vm-host
 ```
 
-## Install Termux from F-Droid. In Termux:
+### Install Termux from F-Droid. In Termux:
 ```
 # termux-setup-storage
 # mkdir kvm
@@ -116,6 +116,14 @@ or
 $ sudo ./gvforwarder --debug > /dev/null 2>&1 &
 $ ping 8.8.8.8
 ```
+Stop VM
+In a new session termux
+```
+# su
+# cd /apex/com.android.virt/bin
+# ./crosvm stop /data/data/com.termux/files/home/kvm/crosvm.sock
+```
+
 ### SSH
 ```
 $ sudo mount vm-host.img vm-host/
@@ -211,7 +219,7 @@ Grab the IP Address of the phone from its setting page.
 
 On your technician machine, ssh <user>@<phone IP>. You should be connected to a machine with the hostname vm.
 
-# Network(Optional)
+### Network(Optional)
 Setup a persistent TAP interface
 
 In Termux
@@ -245,7 +253,7 @@ SSH
 ```
 ssh <user>@192.168.10.1
 ```
-## GUI via VNC, Xserver XSDL
+### GUI via VNC, Xserver XSDL
 
 In the guest
 
@@ -281,7 +289,7 @@ Install Xserver XSDL app
 
 Run commands from screen app
 
-## Shared dir
+### Shared dir
 
 In termux
 ```
@@ -290,8 +298,8 @@ In termux
 # cd /apex/com.android.virt/bin
 # ./crosvm run --disable-sandbox --shared-dir "/data/data/com.termux/files/home/host_shared_dir:my_shared_tag:type=fs" -p 'init=/sbin/init' --rwroot /data/data/com.termux/files/home/kvm/debian.img /data/data/com.termux/files/home/kvm/Image --vsock 3 --mem 1024 --cpus 2
 ```
-In the guest
 
+In the guest
 ```
 $ sudo su
 $ mkdir /tmp/guest_shared_dir
@@ -299,7 +307,7 @@ $ mount -t virtiofs my_shared_tag /tmp/guest_shared_dir
 ```
 Use /tmp/guest_shared_dir and /data/data/com.termux/files/home/host_shared_dir
 
-## Troubleshooting
+### Troubleshooting
 
 ping 8.8.8.8 work but network cant
 
@@ -317,14 +325,14 @@ ERRO[0000] gvproxy exiting: cannot add network services: listen tcp 127.0.0.1:22
 
 Solution: reboot phone
 
-socket: address family not supported by protocol
+ERRO[0000] socket: address family not supported by protocol
 
-Solution: enable CONFIG_VSOCKETS
+Solution: enable CONFIG_VSOCKETS=y
 
 Connection closed by {ip_address} or  error: kex_exchange_identification: Connection closed by remote host
 
 Solution: install openssh-server or make linux distro with openssh-server
 
-ERRO dhcp not found
+ERRO[0000] dhcp not found
 
 Solution: make linux distro with dhclient
