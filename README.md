@@ -116,7 +116,9 @@ or
 $ sudo ./gvforwarder --debug > /dev/null 2>&1 &
 $ ping 8.8.8.8
 ```
+
 Stop VM
+
 In a new session termux
 ```
 # su
