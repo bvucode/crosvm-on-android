@@ -268,6 +268,8 @@ In a new session termux
 # ssh -L 5901:127.0.0.1:5901 -C -N -l <user> 192.168.10.1
 ```
 For VNC
+
+In the guest
 ```
 $ vncserver
 ```
