@@ -1,0 +1,102 @@
+========================================================================
+BYTE UNIX Benchmarks (Version 5.1.3)
+
+System: vm: GNU/Linux
+OS: GNU/Linux -- 6.15.0-rc3 -- #1 SMP PREEMPT Sat May 10 04:58:37 +05 2025
+Machine: aarch64 (unknown)
+Language: en_US.utf8 (charmap="ANSI_X3.4-1968", collate="ANSI_X3.4-1968")
+21:43:02 up 58 min, 1 user, load average: 0.22, 0.15, 0.15; runlevel 5
+
+------------------------------------------------------------------------
+Benchmark Run: Sat May 31 2025 21:43:02 - 22:11:06
+0 CPUs in system; running 1 parallel copy of tests
+
+Dhrystone 2 using register variables 19012812.4 lps (10.0 s, 7 samples)
+Double-Precision Whetstone 4180.3 MWIPS (9.1 s, 7 samples)
+Execl Throughput 1204.7 lps (29.9 s, 2 samples)
+File Copy 1024 bufsize 2000 maxblocks 357760.7 KBps (30.0 s, 2 samples)
+File Copy 256 bufsize 500 maxblocks 129990.0 KBps (30.0 s, 2 samples)
+File Copy 4096 bufsize 8000 maxblocks 775982.1 KBps (30.0 s, 2 samples)
+Pipe Throughput 892063.8 lps (10.0 s, 7 samples)
+Pipe-based Context Switching 5343.0 lps (10.0 s, 7 samples)
+Process Creation 1095.9 lps (30.0 s, 2 samples)
+Shell Scripts (1 concurrent) 2031.0 lpm (60.0 s, 2 samples)
+Shell Scripts (8 concurrent) 1052.8 lpm (60.0 s, 2 samples)
+System Call Overhead 571286.6 lps (10.0 s, 7 samples)
+
+System Benchmarks Index Values BASELINE RESULT INDEX
+Dhrystone 2 using register variables 116700.0 19012812.4 1629.2
+Double-Precision Whetstone 55.0 4180.3 760.0
+Execl Throughput 43.0 1204.7 280.2
+File Copy 1024 bufsize 2000 maxblocks 3960.0 357760.7 903.4
+File Copy 256 bufsize 500 maxblocks 1655.0 129990.0 785.4
+File Copy 4096 bufsize 8000 maxblocks 5800.0 775982.1 1337.9
+Pipe Throughput 12440.0 892063.8 717.1
+Pipe-based Context Switching 4000.0 5343.0 13.4
+Process Creation 126.0 1095.9 87.0
+Shell Scripts (1 concurrent) 42.4 2031.0 479.0
+Shell Scripts (8 concurrent) 6.0 1052.8 1754.7
+System Call Overhead 15000.0 571286.6 380.9
+========
+System Benchmarks Index Score 459.2
+
+
+
+======= Script description and score comparison completed! =======
+
+# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
+#         Yet-Another-Bench-Script                   #
+#              v2025-04-20                           #
+# https://github.com/masonr/yet-another-bench-script #
+# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
+
+ARM compatibility is considered *experimental*
+
+Basic System Information:
+---------------------------------
+Uptime : 0 days, 1 hours, 37 minutes
+Processor : Cortex-A55
+CPU cores : 8 @ ??? MHz
+AES-NI : ✔ Enabled
+VM-x/AMD-V : ❌ Disabled
+RAM : 1.9 GiB
+Swap : 4.0 GiB
+Disk : 30.6 GiB
+Distro : Debian GNU/Linux 10 (buster)
+Kernel : 6.15.0-rc3
+VM Type : NONE
+IPv4/IPv6 : ✔ Online / ❌ Offline
+
+IPv4 Network Information:
+---------------------------------
+ISP : ?????
+ASN : ?????
+Host : ?????
+Location : ?????
+Country : ?????
+
+fio Disk Speed Tests (Mixed R/W 50/50) (Partition /dev/root):
+---------------------------------
+Block Size | 4k (IOPS) | 64k (IOPS)
+------ | --- ---- | ---- ----
+Read | 16.39 MB/s (4.0k) | 64.25 MB/s (1.0k)
+Write | 16.41 MB/s (4.1k) | 66.16 MB/s (1.0k)
+Total | 32.81 MB/s (8.2k) | 130.41 MB/s (2.0k)
+| |
+Block Size | 512k (IOPS) | 1m (IOPS)
+------ | --- ---- | ---- ----
+Read | 80.01 MB/s (156) | 40.92 MB/s (39)
+Write | 86.85 MB/s (169) | 45.66 MB/s (44)
+Total | 166.86 MB/s (325) | 86.59 MB/s (83)
+
+iperf3 Network Speed Tests (IPv4):
+---------------------------------
+Provider | Location (Link) | Send Speed | Recv Speed | Ping
+----- | ----- | ---- | ---- | ----
+Clouvider | London, UK (10G) | 25.3 Mbits/sec | 55.7 Mbits/sec | 1.56 ms
+Eranium | Amsterdam, NL (100G) | 29.3 Mbits/sec | 61.2 Mbits/sec | 1.80 ms
+Uztelecom | Tashkent, UZ (10G) | 30.1 Mbits/sec | 61.3 Mbits/sec | 1.84 ms
+Leaseweb | Singapore, SG (10G) | busy | 57.6 Mbits/sec | 1.69 ms
+Clouvider | Los Angeles, CA, US (10G) | busy | 52.9 Mbits/sec | 3.15 ms
+Leaseweb | NYC, NY, US (10G) | 28.0 Mbits/sec | 58.1 Mbits/sec | 1.87 ms
+Edgoo | Sao Paulo, BR (1G) | busy | 50.3 Mbits/sec | 1.48 ms
