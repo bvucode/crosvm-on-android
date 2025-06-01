@@ -104,7 +104,7 @@ In a new session termux
 ```
 # su
 # cd /apex/com.android.virt/bin
-# ./crosvm run --disable-sandbox --net tap-name=crosvm_tap -s  /data/data/com.termux/files/home/kvm/crosvm.sock --shared-dir "/data/data/com.termux/files/home/host_shared_dir:my_shared_tag:type=fs" -p 'init=/sbin/init' --rwroot /data/data/com.termux/files/home/kvm/debian.img /data/data/com.termux/files/home/kvm/Image --vsock 3 --mem 1024 --cpus 4
+# ./crosvm run --disable-sandbox --net tap-name=crosvm_tap -s  /data/data/com.termux/files/home/kvm/crosvm.sock --shared-dir "/data/data/com.termux/files/home/host_shared_dir:my_shared_tag:type=fs" -p 'init=/sbin/init' --rwroot /data/data/com.termux/files/home/kvm/debian.img /data/data/com.termux/files/home/kvm/Image --vsock 3 --mem 2048 --cpus 8
 ```
 
 In the guest
@@ -189,7 +189,7 @@ Set the value to the following
 ```
 #!/data/data/com.termux/files/usr/bin/sh
 
-/apex/com.android.virt/bin/crosvm run --disable-sandbox --net tap-name=crosvm_tap -s  /data/data/com.termux/files/home/kvm/crosvm.sock --shared-dir "/data/data/com.termux/files/home/host_shared_dir:my_shared_tag:type=fs" -p 'init=/sbin/init' --rwroot /data/data/com.termux/files/home/kvm/debian.img /data/data/com.termux/files/home/kvm/Image --vsock 3 --mem 1024 --cpus 4
+/apex/com.android.virt/bin/crosvm run --disable-sandbox --net tap-name=crosvm_tap -s  /data/data/com.termux/files/home/kvm/crosvm.sock --shared-dir "/data/data/com.termux/files/home/host_shared_dir:my_shared_tag:type=fs" -p 'init=/sbin/init' --rwroot /data/data/com.termux/files/home/kvm/debian.img /data/data/com.termux/files/home/kvm/Image --vsock 3 --mem 2048 --cpus 8
 ```
 ```
 $ sudo chmod +x ./start-vm.sh
@@ -300,7 +300,7 @@ In termux
 # mkdir host_shared_dir
 # su
 # cd /apex/com.android.virt/bin
-# ./crosvm run --disable-sandbox --shared-dir "/data/data/com.termux/files/home/host_shared_dir:my_shared_tag:type=fs" -p 'init=/sbin/init' --rwroot /data/data/com.termux/files/home/kvm/debian.img /data/data/com.termux/files/home/kvm/Image --vsock 3 --mem 1024 --cpus 2
+# ./crosvm run --disable-sandbox --shared-dir "/data/data/com.termux/files/home/host_shared_dir:my_shared_tag:type=fs" -p 'init=/sbin/init' --rwroot /data/data/com.termux/files/home/kvm/debian.img /data/data/com.termux/files/home/kvm/Image
 ```
 
 In the guest
