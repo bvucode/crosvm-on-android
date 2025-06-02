@@ -40,9 +40,9 @@ System Call Overhead 15000.0 571286.6 380.9
 ========
 System Benchmarks Index Score 459.2
 
-
-
 ======= Script description and score comparison completed! =======
+
+
 
 # ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
 #         Yet-Another-Bench-Script                   #
