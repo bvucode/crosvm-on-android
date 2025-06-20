@@ -118,7 +118,6 @@ network.sh
 
 ./linux-x.x.xx/arch/arm64/boot/Image
 
-
 In termux:
 ```
 # su
@@ -175,8 +174,9 @@ echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
 $ sudo chmod +x network.sh
 $ sudo ./network.sh
 ```
+```
 ssh <user>@192.168.10.2
-
+```
 Stop VM
 
 In a new session termux
