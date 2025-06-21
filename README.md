@@ -78,7 +78,7 @@ tar -czvf gvisor-tap-vsock-android.tar.gz ./gvisor-tap-vsock-android/bin/*
 ### Network
 Setup a persistent TAP interface
 ```
-# nvim network.sh
+$ nvim network.sh
 ```
 Set the value to the following
 ```
