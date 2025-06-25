@@ -118,6 +118,7 @@ network.sh
 
 ./linux-x.x.xx/arch/arm64/boot/Image
 
+
 In termux:
 ```
 # su
@@ -174,9 +175,8 @@ echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
 $ sudo chmod +x network.sh
 $ sudo ./network.sh
 ```
-```
 ssh <user>@192.168.10.2
-```
+
 Stop VM
 
 In a new session termux
@@ -230,6 +230,10 @@ Solution: enable hotspot on android
 ping 8.8.8.8 Network is unreachable
 
 Solution: again in the guest sudo chmod +x gvforwarder
+
+read from remote host 192.168.10.2: software caused connection abort client_loop: send disconnect: broken pipe
+
+Solution: VPN off
 
 ERRO[0000] gvproxy exiting: cannot listen: listen unix /data/data/com.termux/files/home/kvm/network.sock: bind: address already in use
 
