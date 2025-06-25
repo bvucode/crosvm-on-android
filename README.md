@@ -175,7 +175,9 @@ echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
 $ sudo chmod +x network.sh
 $ sudo ./network.sh
 ```
-ssh <user>@192.168.10.2
+```
+ssh <username>@192.168.10.2
+```
 
 Stop VM
 
@@ -196,7 +198,7 @@ $ sudo apt install tightvncserver, xfce4, xfce4-terminal, xfce4-goodies
 
 In a new session termux
 ```
-# ssh -L 5901:127.0.0.1:5901 -C -N -l <user> 192.168.10.2
+# ssh -L 5901:127.0.0.1:5901 -C -N -l <username> 192.168.10.2
 ```
 
 Install Xserver XSDL app
