@@ -66,7 +66,7 @@ $ useradd -m -g sudo <username>
 $ passwd <username>
 $ chsh -s /bin/bash <username>
 $ exit
-$ sudo mkdir -p ./rootfs/gvisor-tap-vsock
+$ sudo mkdir -p ./rootfs/gvisor-tap-vsock/bin
 $ sudo cp -r ./gvisor-tap-vsock-arm64/bin/* ./rootfs/gvisor-tap-vsock/bin
 $ sudo umount ./rootfs
 ```
