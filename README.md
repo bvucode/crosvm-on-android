@@ -66,7 +66,7 @@ $ useradd -m -g sudo <username>
 $ passwd <username>
 $ chsh -s /bin/bash <username>
 $ exit
-$ sudo mkdir -p ./rootfs/gvisor-tap-vsock/bin
+$ sudo mkdir -p ./rootfs/gvisor-tap-vsock
 $ sudo cp -r ./gvisor-tap-vsock-arm64/bin/* ./rootfs/gvisor-tap-vsock/bin
 $ sudo umount ./rootfs
 ```
@@ -188,7 +188,7 @@ In a new session termux
 # ./crosvm stop /data/data/com.termux/files/home/kvm/crosvm.sock
 ```
 
-### GUI via Xserver XSDL
+### GUI via Xserver XSDL, VNC
 
 In the guest
 
@@ -200,10 +200,31 @@ In a new session termux
 ```
 # ssh -L 5901:127.0.0.1:5901 -C -N -l <username> 192.168.10.2
 ```
+For Xserver XSDL
 
 Install Xserver XSDL app
 
 Run commands from screen app
+
+For VNC
+
+In the guest
+```
+$ vncserver
+```
+
+Setting vncserver
+
+Install vncviewer app on your phone
+
+Open vncviewer app
+```
+localhost
+
+5901
+
+vncserver's password
+```
 
 ### Shared dir
 
