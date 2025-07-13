@@ -188,24 +188,18 @@ In a new session termux
 # ./crosvm stop /data/data/com.termux/files/home/kvm/crosvm.sock
 ```
 
-### GUI via Xserver XSDL, VNC
+### GUI via VNC, Xserver XSDL
 
 In the guest
 
 ```
-$ sudo apt install tightvncserver, xfce4, xfce4-terminal, xfce4-goodies
+$ sudo apt install tightvncserver  xfce4 xfce4-terminal xfce4-goodies
 ```
 
 In a new session termux
 ```
 # ssh -L 5901:127.0.0.1:5901 -C -N -l <username> 192.168.10.2
 ```
-For Xserver XSDL
-
-Install Xserver XSDL app
-
-Run commands from screen app
-
 For VNC
 
 In the guest
@@ -225,6 +219,11 @@ localhost
 
 vncserver's password
 ```
+For Xserver XSDL
+
+Install Xserver XSDL app
+
+Run commands from screen app
 
 ### Shared dir
 
