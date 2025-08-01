@@ -284,4 +284,5 @@ Solution: make linux distro with dhclient
 
 ### Additional features
 
-Run multiple virtual machines from other directories with new Linux Distro, Image and etc.
+Run multiple virtual machines from other directories with new Crosvm, Linux Distro, Image and etc.
+
