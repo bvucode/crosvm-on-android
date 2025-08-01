@@ -281,3 +281,7 @@ Solution: make linux distro with dhclient
 ### How to make it in termux
 
 [For termux](https://github.com/bvucode/Crosvm-on-android/blob/main/termux.md)
+
+### Additional features
+
+Run multiple virtual machines from other directories with new Linux Distro, Image and etc.
