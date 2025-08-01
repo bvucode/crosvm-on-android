@@ -1,4 +1,4 @@
-# How to boot linux in a vm on Android 15+
+# Run Linux on Android without AVF support
 
 ### Good to Mention
 
@@ -66,7 +66,7 @@ $ useradd -m -g sudo <username>
 $ passwd <username>
 $ chsh -s /bin/bash <username>
 $ exit
-$ sudo mkdir -p ./rootfs/gvisor-tap-vsock
+$ sudo mkdir -p ./rootfs/gvisor-tap-vsock/bin
 $ sudo cp -r ./gvisor-tap-vsock-arm64/bin/* ./rootfs/gvisor-tap-vsock/bin
 $ sudo umount ./rootfs
 ```
@@ -193,20 +193,20 @@ In a new session termux
 In the guest
 
 ```
-$ sudo apt install tightvncserver  xfce4 xfce4-terminal xfce4-goodies
+$ sudo apt install tightvncserver xfce4 xfce4-terminal xfce4-goodies
 ```
+
+For VNC
 
 In a new session termux
 ```
 # ssh -L 5901:127.0.0.1:5901 -C -N -l <username> 192.168.10.2
 ```
-For VNC
 
 In the guest
 ```
 $ vncserver
 ```
-
 Setting vncserver
 
 Install vncviewer app on your phone
@@ -219,6 +219,7 @@ localhost
 
 vncserver's password
 ```
+
 For Xserver XSDL
 
 Install Xserver XSDL app
@@ -276,3 +277,7 @@ Solution: install openssh-server or make linux distro with openssh-server
 ERRO[0000] dhcp not found
 
 Solution: make linux distro with dhclient
+
+### How to make it in termux
+
+[For termux](https://github.com/bvucode/Crosvm-on-android/blob/main/termux.md)
