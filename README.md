@@ -2,7 +2,7 @@
 
 ### Good to Mention
 
-* The device used here is a Xiaomi Poco C65 phone running Android 15
+* The device used here is a Xiaomi Poco C65 phone running Android 15 (can work on android 14 linux 6.1)
 * Unlock bootloader
 * You need a [rooted](https://en.m.wikipedia.org/wiki/Rooting_(Android)) device
 * If you damage your device in any way, you are all responsible for it!
@@ -266,6 +266,10 @@ ERRO[0000] gvproxy exiting: cannot add network services: listen tcp 127.0.0.1:22
 
 Solution: reboot phone
 
+ERROR crosvm exiting with error 1: failed to create control server Caused by: Address already in use (os error 98)
+
+Solution: delete crosvm.sock
+
 ERRO[0000] socket: address family not supported by protocol
 
 Solution: enable CONFIG_VSOCKETS=y
@@ -285,4 +289,12 @@ Solution: make linux distro with dhclient
 ### Additional features
 
 Run multiple virtual machines from other directories with new Crosvm, Linux Distro, Image and etc.
+
+In termux
+```
+# su
+# chmod +x crosvm
+# ./crosvm run --disable-sandbox --block /data/data/com.termux/files/home/ubuntu.img,root -p 'root=/dev/vda' /data/data/com.termux/files/home/Image
+```
+
 
