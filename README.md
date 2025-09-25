@@ -289,7 +289,7 @@ Solution: make linux distro with dhclient
 
 ### Network 2
 
-Official method networking from Crosvm docs
+Official method networking from Crosvm docs modified for android
 
 [Netplan](https://github.com/bvucode/crosvm-on-android/blob/master/start-vm-net.sh)
 
@@ -308,6 +308,7 @@ In termux
 # chmod +x crosvm
 # ./crosvm run --disable-sandbox --block /data/data/com.termux/files/home/ubuntu.img,root -p 'root=/dev/vda' /data/data/com.termux/files/home/Image
 ```
+
 
 
 
