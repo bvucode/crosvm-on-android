@@ -292,6 +292,10 @@ Official method networking from Crosvm docs
 
 [Netplan](https://github.com/bvucode/crosvm-on-android/blob/master/start-vm-net.sh)
 
+SSH
+```
+<username>@192.168.8.2
+```
 
 ### Additional features
 
@@ -303,6 +307,7 @@ In termux
 # chmod +x crosvm
 # ./crosvm run --disable-sandbox --block /data/data/com.termux/files/home/ubuntu.img,root -p 'root=/dev/vda' /data/data/com.termux/files/home/Image
 ```
+
 
 
 
