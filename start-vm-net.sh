@@ -1,6 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/sh
 
-# Then edit /etc/netplan/90-default.yaml in the VM like this:
+# Edit /etc/netplan/90-default.yaml in the VM like this:
 # ""
 # network:
 #    version: 2
