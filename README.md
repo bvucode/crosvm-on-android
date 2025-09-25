@@ -99,9 +99,6 @@ iptables -A FORWARD -i crosvm_tap -o "${HOST_DEV}" -j ACCEPT
 # the main route table needs to be added
 ip rule add from all lookup main pref 1
 ```
-### Networking 2
-
-[Netplan](https://github.com/bvucode/crosvm-on-android/blob/master/start-vm-net.sh)
 
 ### Install Termux from F-Droid.
 
@@ -289,6 +286,13 @@ Solution: make linux distro with dhclient
 
 [For termux](https://github.com/bvucode/Crosvm-on-android/blob/main/termux.md)
 
+### Network 2
+
+Official method networking from Crosvm docs
+
+[Netplan](https://github.com/bvucode/crosvm-on-android/blob/master/start-vm-net.sh)
+
+
 ### Additional features
 
 Run multiple virtual machines from other directories with new Crosvm, Linux Distro, Image and etc.
@@ -299,6 +303,7 @@ In termux
 # chmod +x crosvm
 # ./crosvm run --disable-sandbox --block /data/data/com.termux/files/home/ubuntu.img,root -p 'root=/dev/vda' /data/data/com.termux/files/home/Image
 ```
+
 
 
 
