@@ -38,7 +38,6 @@ In a new session termux
 # chmod +x network.sh
 # ./network.sh
 ```
-
 In the guest
 ```
 $ cd /gvisor-tap-vsock/bin
@@ -66,7 +65,6 @@ sudo ip route add default via 192.168.10.1
 # DNS provider, which should be visible in `/etc/resolv.conf` on the host.
 echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
 ```
-
 ```
 $ sudo chmod +x network.sh
 $ sudo ./network.sh
@@ -133,7 +131,6 @@ Set the value to the following
 $ sudo chmod +x ./start-vm.sh
 ```
 In termux
-
 ```
 # su
 # cd /kvm
@@ -154,7 +151,9 @@ On your technician machine(PC, Phone with Termux)
 ssh <username>@<phone IP>
 ```
 For this method you can setup a persistent TAP interface for host from Crosvm Doc
+
 SSH
 ```
 ssh <username>@<192.168.10.1>
 ```
+
