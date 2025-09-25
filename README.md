@@ -294,7 +294,7 @@ Official method networking from Crosvm docs
 
 SSH
 ```
-<username>@192.168.8.2
+ssh <username>@192.168.8.2
 ```
 
 ### Additional features
@@ -307,6 +307,7 @@ In termux
 # chmod +x crosvm
 # ./crosvm run --disable-sandbox --block /data/data/com.termux/files/home/ubuntu.img,root -p 'root=/dev/vda' /data/data/com.termux/files/home/Image
 ```
+
 
 
 
