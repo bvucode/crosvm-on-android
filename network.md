@@ -26,17 +26,17 @@ Copy file network.sh to the phone in /data/data/com.termux/files/home/kvm
 
 In termux:
 ```
-# su
-# cd /data/data/com.termux/files/home/kvm
-# chmod +x network.sh
-# ./network.sh
-```
-
-```
 # cd gvisor-tap-vsock-android/bin
 # su
 # chmod +x gvproxy
 # ./gvproxy -debug -listen vsock://:1024 -listen unix:///data/data/com.termux/files/home/kvm/network.sock
+```
+In a new session termux
+```
+# su
+# cd /data/data/com.termux/files/home/kvm
+# chmod +x network.sh
+# ./network.sh
 ```
 
 In the guest
