@@ -149,4 +149,7 @@ SSH into the Phone
 
 Grab the IP Address of the phone from its setting page or in terminal Ip r
 
-On your technician machine(PC, Phone with Termux), ssh <username>@<phone IP>
+On your technician machine(PC, Phone with Termux)
+```
+ssh <username>@<phone IP>
+```
