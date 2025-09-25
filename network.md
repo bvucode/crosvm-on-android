@@ -153,3 +153,8 @@ On your technician machine(PC, Phone with Termux)
 ```
 ssh <username>@<phone IP>
 ```
+For this method you can setup a persistent TAP interface for host from Crosvm Doc
+SSH
+```
+ssh <username>@<192.168.10.1>
+```
