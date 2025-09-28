@@ -1,34 +1,19 @@
 #!/data/data/com.termux/files/usr/bin/sh
 
-# Edit /etc/netplan/90-default.yaml in the VM like this:
+# Edit /etc/netplan/01-netcfg.yaml in the VM like this:
 # ""
+# # Configure network with static IP 192.168.10.2
 # network:
 #    version: 2
+#    renderer: networkd
 #    ethernets:
-#        all-en:
-#            match:
-#                name: en*
-#            dhcp4: false
-#
-#            addresses:
-#              - 192.168.8.2/24
+#        enp0s4:
+#            addresses: [192.168.10.2/24]
+#            nameservers:
+#                addresses: [8.8.8.8]
 #            routes:
 #              - to: default
-#                via: 192.168.8.1
-#            nameservers:
-#                  addresses: [8.8.8.8]
-#            dhcp6: true
-#            dhcp6-overrides:
-#                use-domains: true
-#        all-eth:
-#            match:
-#                name: eth*
-#            dhcp4: true
-#            dhcp4-overrides:
-#                use-domains: true
-#            dhcp6: true
-#            dhcp6-overrides:
-#                use-domains: true
+#                via: 192.168.10.1
 # ""
 # netplan apply
 # ping www.google.com
@@ -36,15 +21,15 @@
 ifname=crosvm_tap
 if [ ! -d /sys/class/net/$ifname ]; then
     ip tuntap add mode tap vnet_hdr $ifname
-    ip addr add 192.168.8.1/24 dev $ifname
+    ip addr add 192.168.10.1/24 dev $ifname
     ip link set $ifname up
-    ip r a table wlan0 192.168.8.0/24 via 192.168.8.1 dev $ifname
+    ip r a table wlan0 192.168.10.0/24 via 192.168.10.1 dev $ifname
     iptables -D INPUT -j ACCEPT -i $ifname
     iptables -D OUTPUT -j ACCEPT -o $ifname
     iptables -I INPUT -j ACCEPT -i $ifname
     iptables -I OUTPUT -j ACCEPT -o $ifname
-    iptables -t nat -D POSTROUTING -j MASQUERADE -o wlan0 -s 192.168.8.0/24
-    iptables -t nat -I POSTROUTING -j MASQUERADE -o wlan0 -s 192.168.8.0/24
+    iptables -t nat -D POSTROUTING -j MASQUERADE -o wlan0 -s 192.168.10.0/24
+    iptables -t nat -I POSTROUTING -j MASQUERADE -o wlan0 -s 192.168.10.0/24
     sysctl -w net.ipv4.ip_forward=1
     
     ip rule add from all fwmark 0/0x1ffff iif wlan0 lookup wlan0
