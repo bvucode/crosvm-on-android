@@ -78,11 +78,11 @@ ssh <username>@192.168.10.2
 
 Official method networking from Crosvm docs modified for android
 
-[Netplan](https://github.com/bvucode/crosvm-on-android/blob/master/start-vm-net.sh)
+[Netplan](https://github.com/bvucode/crosvm-on-android/blob/master/network.sh)
 
 SSH
 ```
-ssh <username>@192.168.8.2
+ssh <username>@192.168.10.2
 ```
 
 ### Network 3
@@ -107,7 +107,7 @@ Download curl-aarch64 from https://github.com/moparisthebest/static-curl and pla
 ```
 $ cd /kvm
 $ sudo chmod +x curl-aarch64
-$ sudo nvim start-network.sh
+$ sudo nvim network.sh
 ```
 Set the value to the following
 ```
@@ -118,7 +118,7 @@ sleep 1
 ./curl-aarch64 --unix-socket /data/data/com.termux/files/home/kvm/network.sock http:/unix/services/forwarder/expose -X POST -d '{"local":":22","remote":"192.168.127.2:22"}'
 ```
 ```
-$ sudo chmod +x ./start-network.sh
+$ sudo chmod +x ./network.sh
 $ sudo nvim ./start-vm.sh
 ```
 Set the value to the following
@@ -134,7 +134,7 @@ In termux
 ```
 # su
 # cd /kvm
-# ./start-network.sh
+# ./network.sh
 ```
 In a new session termux
 ```
@@ -144,7 +144,7 @@ In a new session termux
 ```
 SSH into the Phone
 
-Grab the IP Address of the phone from its setting page or in terminal Ip r
+Grab the IP Address of the phone from its setting page or in terminal Ip a
 
 On your technician machine(PC, Phone with Termux)
 ```
@@ -156,4 +156,5 @@ SSH
 ```
 ssh <username>@<192.168.10.1>
 ```
+
 
