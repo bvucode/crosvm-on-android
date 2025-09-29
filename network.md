@@ -113,6 +113,7 @@ if [ ! -d /sys/class/net/$ifname ]; then
     iptables -j ACCEPT -I FORWARD -m state --state ESTABLISHED,RELATED -i "${HOST_DEV}" -o $ifname
     iptables -j ACCEPT -I FORWARD -m state --state ESTABLISHED,RELATED -o "${HOST_DEV}" -i $ifname
 fi
+/apex/com.android.virt/bin/crosvm run --disable-sandbox --net tap-name=$ifname -s /data/data/com.termux/files/home/kvm/crosvm.sock --shared-dir "/data/data/com.termux/files/home/host_shared_dir:my_shared_tag:type=fs" -p 'init=/sbin/init' --rwroot /data/data/com.termux/files/home/kvm/debian.img /data/data/com.termux/files/home/kvm/Image --vsock 3 --mem 2048 --cpus 8
 
 ```
 
@@ -187,6 +188,7 @@ SSH
 ```
 ssh <username>@<192.168.10.1>
 ```
+
 
 
 
