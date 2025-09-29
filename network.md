@@ -84,6 +84,37 @@ SSH
 ```
 ssh <username>@192.168.10.2
 ```
+Another script
+```
+#!/data/data/com.termux/files/usr/bin/sh
+
+ifname=crosvm_tap
+if [ ! -d /sys/class/net/$ifname ]; then
+    ip tuntap add mode tap vnet_hdr $ifname
+    ip addr add 192.168.10.1/24 dev $ifname
+    ip link set $ifname up
+    HOST_DEV=$(ip route get 8.8.8.8 | awk -- '{printf $5}')
+    ip r a table "${HOST_DEV}" 192.168.10.0/24 via 192.168.10.1 dev $ifname
+    iptables -D INPUT -j ACCEPT -i $ifname
+    iptables -D OUTPUT -j ACCEPT -o $ifname
+    iptables -I INPUT -j ACCEPT -i $ifname
+    iptables -I OUTPUT -j ACCEPT -o $ifname
+    iptables -t nat -D POSTROUTING -j MASQUERADE -o "${HOST_DEV}" -s 192.168.10.0/24
+    iptables -t nat -I POSTROUTING -j MASQUERADE -o "${HOST_DEV}" -s 192.168.10.0/24
+    sysctl -w net.ipv4.ip_forward=1
+    
+    ip rule add from all fwmark 0/0x1ffff iif "${HOST_DEV}" lookup "${HOST_DEV}"
+    ip rule add iif $ifname lookup "${HOST_DEV}"
+    
+    iptables -j ACCEPT -D FORWARD -i $ifname -o "${HOST_DEV}"
+    iptables -j ACCEPT -D FORWARD -m state --state ESTABLISHED,RELATED -i "${HOST_DEV}" -o $ifname
+    iptables -j ACCEPT -D FORWARD -m state --state ESTABLISHED,RELATED -o "${HOST_DEV}" -i $ifname
+    iptables -j ACCEPT -I FORWARD -i $ifname -o "${HOST_DEV}"
+    iptables -j ACCEPT -I FORWARD -m state --state ESTABLISHED,RELATED -i "${HOST_DEV}" -o $ifname
+    iptables -j ACCEPT -I FORWARD -m state --state ESTABLISHED,RELATED -o "${HOST_DEV}" -i $ifname
+fi
+
+```
 
 ### Network 3
 
@@ -156,5 +187,6 @@ SSH
 ```
 ssh <username>@<192.168.10.1>
 ```
+
 
 
