@@ -177,6 +177,16 @@ $ mount -t virtiofs my_shared_tag /tmp/guest_shared_dir
 ```
 Use /tmp/guest_shared_dir and /data/data/com.termux/files/home/host_shared_dir
 
+### GPU acceleration is working
+
+```
+   1 OpenGL ES 2.x information:
+   2   version: "OpenGL ES 3.1 Mesa 22.3.6"
+   3   shading language version: "OpenGL ES GLSL ES 3.10"
+   4   vendor: "Mesa/X.org"
+   5   renderer: "virgl (Mali-G52 MC2)"
+```
+
 ### Troubleshooting
 
 ping 8.8.8.8 work but network cant
@@ -229,6 +239,7 @@ In termux
 # chmod +x crosvm
 # ./crosvm run --disable-sandbox --block /data/data/com.termux/files/home/ubuntu.img,root -p 'root=/dev/vda' /data/data/com.termux/files/home/Image
 ```
+
 
 
 
