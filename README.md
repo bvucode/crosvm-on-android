@@ -178,6 +178,13 @@ $ mount -t virtiofs my_shared_tag /tmp/guest_shared_dir
 Use /tmp/guest_shared_dir and /data/data/com.termux/files/home/host_shared_dir
 
 ### GPU acceleration
+
+Android 15 required use Crosvm from Android 16
+
+GUI with Kasmvnc
+
+Build kernel with CONFIG_DRM=m, CONFIG_DRM_VIRTIO_GPU=y and make modules_install
+
 ```
    OpenGL ES 2.x information:
       version: "OpenGL ES 3.1 Mesa 22.3.6"
@@ -238,6 +245,7 @@ In termux
 # chmod +x crosvm
 # ./crosvm run --disable-sandbox --block /data/data/com.termux/files/home/ubuntu.img,root -p 'root=/dev/vda' /data/data/com.termux/files/home/Image
 ```
+
 
 
 
