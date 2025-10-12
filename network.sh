@@ -1,7 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/sh
 
 # Edit /etc/netplan/01-netcfg.yaml in the VM like this:
-# ""
+# 
 # # Configure network with static IP 192.168.10.2
 # network:
 #    version: 2
@@ -14,7 +14,7 @@
 #            routes:
 #              - to: default
 #                via: 192.168.10.1
-# ""
+# 
 # netplan apply
 # ping www.google.com
 
