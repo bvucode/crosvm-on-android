@@ -194,6 +194,7 @@ Build kernel with CONFIG_DRM=m, CONFIG_DRM_VIRTIO_GPU=y and make modules_install
       vendor: "Mesa/X.org"
       renderer: "virgl (Mali-G52 MC2)"
 ```
+[Video](https://youtu.be/CsiEm0m6qVw)
 
 ### Troubleshooting
 
@@ -247,6 +248,7 @@ In termux
 # chmod +x crosvm
 # ./crosvm run --disable-sandbox --block /data/data/com.termux/files/home/ubuntu.img,root -p 'root=/dev/vda' /data/data/com.termux/files/home/Image
 ```
+
 
 
 
