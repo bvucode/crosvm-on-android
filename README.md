@@ -179,11 +179,15 @@ Use /tmp/guest_shared_dir and /data/data/com.termux/files/home/host_shared_dir
 
 ### GPU acceleration
 
-Android 15 required use Crosvm from Android 16
+Android 15 required use Crosvm from Android 16 in Releases
 
 GUI with Kasmvnc
 
 Build kernel with CONFIG_DRM=m, CONFIG_DRM_VIRTIO_GPU=y and make modules_install
+
+```
+LD_PRELOAD=./libbinder_ndk.so:./libbinder.so ./crosvm16 run --disable-sandbox
+```
 
 --gpu backend=virglrenderer,surfaceless=true,egl=true,gles=true,context-types=virgl2
 
@@ -248,6 +252,7 @@ In termux
 # chmod +x crosvm
 # ./crosvm run --disable-sandbox --block /data/data/com.termux/files/home/ubuntu.img,root -p 'root=/dev/vda' /data/data/com.termux/files/home/Image
 ```
+
 
 
 
