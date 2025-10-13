@@ -186,10 +186,8 @@ GUI with Kasmvnc
 Build kernel with CONFIG_DRM=m, CONFIG_DRM_VIRTIO_GPU=y and make modules_install
 
 ```
-LD_PRELOAD=./libbinder_ndk.so:./libbinder.so ./crosvm16 run --disable-sandbox
+LD_PRELOAD=./libbinder_ndk.so:./libbinder.so ./crosvm16 run --disable-sandbox --gpu backend=virglrenderer,surfaceless=true,egl=true,gles=true,context-types=virgl2
 ```
-
---gpu backend=virglrenderer,surfaceless=true,egl=true,gles=true,context-types=virgl2
 
 ```
    OpenGL ES 2.x information:
@@ -252,6 +250,7 @@ In termux
 # chmod +x crosvm
 # ./crosvm run --disable-sandbox --block /data/data/com.termux/files/home/ubuntu.img,root -p 'root=/dev/vda' /data/data/com.termux/files/home/Image
 ```
+
 
 
 
