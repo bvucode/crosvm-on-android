@@ -238,6 +238,10 @@ ERRO[0000] dhcp not found
 
 Solution: make linux distro with dhclient
 
+One of the kernel panic errors occurs because adb transfer may corrupts files
+
+Solution: try copy or scp
+
 ### How to make it in termux
 
 [For termux](https://github.com/bvucode/Crosvm-on-android/blob/main/termux.md)
@@ -252,6 +256,7 @@ In termux
 # chmod +x crosvm
 # ./crosvm run --disable-sandbox --block /data/data/com.termux/files/home/ubuntu.img,root -p 'root=/dev/vda' /data/data/com.termux/files/home/Image
 ```
+
 
 
 
