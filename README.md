@@ -246,6 +246,12 @@ Solution: try copy or scp
 
 [For termux](https://github.com/bvucode/Crosvm-on-android/blob/main/termux.md)
 
+### Download debian rootfs and Image
+
+Download debian rootfs, Image from Releases
+
+Increase size rootfs
+
 ### Additional features
 
 Run multiple virtual machines from other directories with new Crosvm, Linux Distro, Image and etc.
@@ -256,6 +262,7 @@ In termux
 # chmod +x crosvm
 # ./crosvm run --disable-sandbox --block /data/data/com.termux/files/home/ubuntu.img,root -p 'root=/dev/vda' /data/data/com.termux/files/home/Image
 ```
+
 
 
 
