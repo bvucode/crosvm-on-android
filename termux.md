@@ -1,4 +1,6 @@
-# All files in Releases
+# Prepare files
+
+Download drivers-linux-6.15-rc3.tar.gz, gvisor-tap-vsock-android.tar.gz, gvisor-tap-vsock-arm64.tar.gz, Image.gz from Releases
 
 ### Install Termux from F-Droid.
 
@@ -46,3 +48,4 @@ passwd <username>
 sudo usermod -a -G sudo <username>
 
 ```
+
