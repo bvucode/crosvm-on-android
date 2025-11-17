@@ -126,7 +126,7 @@ In a new session termux
 In the guest
 
 ```
-$ sudo apt install tightvncserver xfce4 xfce4-terminal xfce4-goodies
+$ sudo apt install tightvncserver xfce4 xfce4-terminal xfce4-goodies dbus-x11
 ```
 
 For VNC
@@ -262,6 +262,7 @@ In termux
 # chmod +x crosvm
 # ./crosvm run --disable-sandbox --block /data/data/com.termux/files/home/ubuntu.img,root -p 'root=/dev/vda' /data/data/com.termux/files/home/Image
 ```
+
 
 
 
