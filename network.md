@@ -58,9 +58,11 @@ $ sudo systemctl restart networking
 # or
 $ sudo service networking restart
 # or
-$ sudo ifdown eth0 && sudo ifup eth0
+$ sudo ifdown enp0s5 && sudo ifup enp0s5
 ```
-
+```
+$ ping 8.8.8.8
+```
 SSH
 ```
 # ssh <username>@192.168.10.2
@@ -168,7 +170,7 @@ $ exit
 ```
 Or
 
-Download modules and Image from Releases
+Download modules and Image from Releases or Debian rootfs with Image
 
 Download curl-aarch64 from https://github.com/moparisthebest/static-curl and place it into the kvm directory.
 ```
@@ -223,3 +225,4 @@ SSH
 ```
 ssh <username>@<192.168.10.1>
 ```
+
