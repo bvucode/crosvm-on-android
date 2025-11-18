@@ -204,7 +204,7 @@ Build kernel with CONFIG_DRM=m, CONFIG_DRM_VIRTIO_GPU=y and make modules_install
 
 ping 8.8.8.8 work but network cant
 
-Solution: enable hotspot on android
+Solution: enable hotspot on android and correct date
 
 ping 8.8.8.8 Network is unreachable
 
@@ -262,6 +262,7 @@ In termux
 # chmod +x crosvm
 # ./crosvm run --disable-sandbox --block /data/data/com.termux/files/home/ubuntu.img,root -p 'root=/dev/vda' /data/data/com.termux/files/home/Image
 ```
+
 
 
 
