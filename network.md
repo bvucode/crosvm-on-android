@@ -223,6 +223,5 @@ For this method you can setup a persistent TAP interface for host from Crosvm Do
 
 SSH
 ```
-ssh <username>@<192.168.10.1>
+ssh <username>@192.168.10.1
 ```
-
