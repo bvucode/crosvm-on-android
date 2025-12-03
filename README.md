@@ -254,6 +254,19 @@ Increase size rootfs
 
 ### Additional features
 
+Run Windows
+
+Debian and Image in Releases
+```
+sudo qemu-system-x86_64 \
+  -m 768 \
+  -smp 1 \
+  -boot c \
+  -drive file=/home/droid/7.vhd,if=ide,format=vpc \
+  -vnc 0.0.0.0:0 \
+  -device virtio-gpu-pci
+```
+
 Run multiple virtual machines from other directories with new Crosvm, Linux Distro, Image and etc.
 
 In termux
@@ -262,6 +275,7 @@ In termux
 # chmod +x crosvm
 # ./crosvm run --disable-sandbox --block /data/data/com.termux/files/home/ubuntu.img,root -p 'root=/dev/vda' /data/data/com.termux/files/home/Image
 ```
+
 
 
 
