@@ -44,7 +44,9 @@ git clone https://github.com/containers/gvisor-tap-vsock gvisor-tap-vsock-androi
 
 GOOS=android GOARCH=arm64 make
 
-### Create a rootfs
+### Create rootfs
+
+#### Debian
 ```
 $ mkdir rootfs
 $ dd if=/dev/zero of=debian.img bs=1M count=32000
@@ -69,6 +71,50 @@ $ exit
 $ sudo mkdir -p ./rootfs/gvisor-tap-vsock/bin
 $ sudo cp -r ./gvisor-tap-vsock-arm64/bin/* ./rootfs/gvisor-tap-vsock/bin
 $ sudo umount ./rootfs
+```
+#### Arch Linux
+```
+$ curl -LO http://os.archlinuxarm.org/os/ArchLinuxARM-aarch64-latest.tar.gz
+$ curl -LO http://os.archlinuxarm.org/os/ArchLinuxARM-aarch64-latest.tar.gz.md5
+$ md5sum -c ArchLinuxARM-aarch64-latest.tar.gz.md5
+$ sudo dd if=/dev/zero of=arch-rootfs.img bs=1M count=32000
+$ sudo mkfs.ext4 arch-rootfs.img
+$ sudo losetup --find --show arch-rootfs.img
+$ mkdir rootfs
+$ sudo mount /dev/loop0 rootfs
+$ sudo tar -xvf ArchLinuxARM-aarch64-latest.tar.gz -C rootfs
+$ sudo cp -r linux-6.16.12 ./rootfs
+$ sudo arch-chroot rootfs /bin/bash
+$ pacman-key --init
+$ pacman-key --populate archlinuxarm
+$ pacman -Rnd linux-aarch64
+$ pacman -S base-devel --noconfirm
+$ cd /linux-6.16.12
+$ make install
+$ cd /
+$ rm -rf /linux-6.16.12
+$ exit
+$ cd linux-6.16.12
+$ sudo make modules_install INSTALL_MOD_PATH=/home/rootfs
+$ cd ../
+$ sudo nvim rootfs/etc/passwd
+```
+
+Delete x after root
+
+```
+$ echo "vm" | sudo tee ./rootfs/etc/hostname
+$ sudo mkdir -p ./rootfs/etc/systemd/resolved.conf.d/
+$ sudo nvim ./rootfs/etc/systemd/resolved.conf.d/dns_servers.conf
+```
+Set the value to the following
+
+[Resolve]
+
+DNS=8.8.8.8 1.1.1.1
+```
+$ sudo umount -l rootfs/
+$ sudo losetup -d /dev/loop0
 ```
 
 ### Prepare the files
@@ -181,7 +227,7 @@ Use /tmp/guest_shared_dir and /data/data/com.termux/files/home/host_shared_dir
 
 Android 15 required use Crosvm from Android 16 in Releases
 
-GUI with Kasmvnc
+Debian GUI with KasmVNC
 
 Build kernel with CONFIG_DRM=m, CONFIG_DRM_VIRTIO_GPU=y and make modules_install
 
@@ -245,9 +291,9 @@ Solution: try copy or scp
 
 [For termux](https://github.com/bvucode/Crosvm-on-android/blob/main/termux.md)
 
-### Download debian rootfs and Image
+### Download rootfs and Image
 
-Download debian rootfs, Image from Releases
+Debian, Arch Linux rootfs, Image from Releases
 
 Increase size rootfs
 

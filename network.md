@@ -32,6 +32,7 @@ if [ ! -d /sys/class/net/$ifname ]; then
 fi
 /apex/com.android.virt/bin/crosvm run --disable-sandbox --net tap-name=$ifname -s /data/data/com.termux/files/home/kvm/crosvm.sock --shared-dir "/data/data/com.termux/files/home/host_shared_dir:my_shared_tag:type=fs" -p 'init=/sbin/init' --rwroot /data/data/com.termux/files/home/kvm/debian.img /data/data/com.termux/files/home/kvm/Image --vsock 3 --mem 2048 --cpus 8
 ```
+#### Debian
 
 In the guest
 
@@ -63,7 +64,29 @@ $ sudo ifdown enp0s5 && sudo ifup enp0s5
 ```
 $ ping 8.8.8.8
 ```
+#### Arch Linux
+
+In the guest
+
+```
+$ cat <<EOF > /etc/systemd/network/20-wired.network
+[Match]
+Name=enp0s5
+
+[Network]
+Address=192.168.10.2/24
+Gateway=192.168.10.1
+DNS=8.8.8.8 8.8.4.4
+EOF
+```
+
+```
+$ systemctl restart systemd-networkd.service
+$ ping 8.8.8.8
+```
+
 SSH
+
 ```
 # ssh <username>@192.168.10.2
 ```
