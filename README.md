@@ -230,7 +230,7 @@ Use /tmp/guest_shared_dir and /data/data/com.termux/files/home/host_shared_dir
 
 Android 15 required use Crosvm from Android 16 in Releases
 
-Debian GUI with KasmVNC
+Debian and Ubuntu GUI with KasmVNC
 
 Build kernel with CONFIG_DRM=m, CONFIG_DRM_VIRTIO_GPU=y and make modules_install
 
@@ -256,7 +256,7 @@ Solution: enable hotspot on android and correct date
 
 ping 8.8.8.8 Network is unreachable
 
-Solution: again in the guest sudo chmod +x gvforwarder
+Solution: again in the guest sudo chmod +x gvforwarder and correct date
 
 read from remote host 192.168.10.2: software caused connection abort client_loop: send disconnect: broken pipe
 
@@ -300,7 +300,6 @@ Increase size rootfs
 
 Run Windows
 
-Debian and Image in Releases
 ```
 sudo qemu-system-x86_64 \
   -m 768 \

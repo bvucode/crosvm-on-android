@@ -126,7 +126,7 @@ network:
 EOF
 ```
 ```
-$ apply netplan
+$ netplan apply
 $ ping 8.8.8.8
 ```
 
