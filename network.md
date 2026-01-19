@@ -93,6 +93,8 @@ SSH
 
 #### Method 2:
 
+Netplan
+
 ```cat << EOF > /etc/netplan/90-default.yaml
 network:
     version: 2
@@ -124,6 +126,7 @@ EOF
 ```
 ```
 $ apply netplan
+$ ping 8.8.8.8
 ```
 
 SSH
@@ -280,3 +283,4 @@ SSH
 ```
 ssh <username>@192.168.10.1
 ```
+
