@@ -93,7 +93,8 @@ SSH
 
 #### Method 2:
 
-```cat << EOF > /etc/netplan/90-default.yaml
+```text 
+cat << EOF > /etc/netplan/90-default.yaml
 network:
     version: 2
     ethernets:
