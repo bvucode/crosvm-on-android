@@ -113,6 +113,11 @@ DNS=8.8.8.8 1.1.1.1
 $ sudo umount -l rootfs/
 $ sudo losetup -d /dev/loop0
 ```
+#### Create rootfs in Termux
+
+```
+# pkg install debootstrap
+```
 
 ### Prepare the files
 
@@ -140,6 +145,7 @@ network.sh
 # cd /data/data/com.termux/files/home/kvm
 # tar -xvf gvisor-tap-vsock-android.tar.gz
 ```
+
 ### Network
 
 [Network instruction](https://github.com/bvucode/Crosvm-on-android/blob/main/network.md)
@@ -283,10 +289,6 @@ Solution: make linux distro with dhclient
 One of the kernel panic errors occurs because adb transfer may corrupts files
 
 Solution: try copy or scp
-
-### How to make it in termux
-
-[For termux](https://github.com/bvucode/Crosvm-on-android/blob/main/termux.md)
 
 ### Download rootfs and Image
 

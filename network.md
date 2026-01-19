@@ -92,7 +92,39 @@ SSH
 ```
 
 #### Method 2:
-[Netplan](https://github.com/bvucode/crosvm-on-android/blob/master/network.sh)
+
+```cat << EOF > /etc/netplan/90-default.yaml
+network:
+    version: 2
+    ethernets:
+        all-en:
+            match:
+                name: en*
+            dhcp4: false
+            addresses:
+              - 192.168.10.2/24
+            routes:
+              - to: default
+                via: 192.168.10.1
+            nameservers:
+                  addresses:
+            dhcp6: true
+            dhcp6-overrides:
+                use-domains: true
+        all-eth:
+            match:
+                name: eth*
+            dhcp4: true
+            dhcp4-overrides:
+                use-domains: true
+            dhcp6: true
+            dhcp6-overrides:
+                use-domains: true
+EOF
+```
+```
+$ apply netplan
+```
 
 SSH
 ```
