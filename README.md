@@ -232,6 +232,8 @@ Android 15 required use Crosvm from Android 16 in Releases
 
 Debian and Ubuntu GUI with KasmVNC
 
+vncserver -hw3d -drinode /dev/dri/renderD128
+
 Build kernel with CONFIG_DRM=m, CONFIG_DRM_VIRTIO_GPU=y and make modules_install
 
 ```
