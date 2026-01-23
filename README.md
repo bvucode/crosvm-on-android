@@ -53,6 +53,7 @@ $ dd if=/dev/zero of=debian.img bs=1M count=32000
 $ sudo mkfs.ext4 debian.img
 $ sudo mount debian.img rootfs/
 $ sudo debootstrap --arch=arm64 buster rootfs/
+$ sudo cp -r linux-6.16.12 ./rootfs
 $ echo "vm" | sudo tee ./rootfs/etc/hostname
 $ sudo mkdir -p ./rootfs/etc/systemd/resolved.conf.d/
 $ sudo nvim ./rootfs/etc/systemd/resolved.conf.d/dns_servers.conf
@@ -64,12 +65,28 @@ Set the value to the following
 DNS=8.8.8.8 1.1.1.1
 ```
 $ sudo chroot ./rootfs /bin/bash
+$ apt install build-essential
+$ cd /linux-6.16.12
+$ make install
+$ cd /
+$ apt remove build-essential
+$ rm -rf /linux-6.16.12
 $ useradd -m -g sudo <username>
 $ passwd <username>
 $ chsh -s /bin/bash <username>
 $ exit
+$ cd linux-6.16.12
+$ sudo make modules_install INSTALL_MOD_PATH=/home/rootfs
+$ cd ../
+```
+
+Not required if using the network configuration method Network: Official method networking from Crosvm docs modified for Android
+```
 $ sudo mkdir -p ./rootfs/gvisor-tap-vsock/bin
 $ sudo cp -r ./gvisor-tap-vsock-arm64/bin/* ./rootfs/gvisor-tap-vsock/bin
+```
+
+```
 $ sudo umount ./rootfs
 ```
 #### Arch Linux
