@@ -7,6 +7,14 @@
 * You need a [rooted](https://en.m.wikipedia.org/wiki/Rooting_(Android)) device
 * If you damage your device in any way, you are all responsible for it!
 
+### Result of command from Poco C65
+```
+su
+getprop | grep hypervisor
+[ro.boot.hypervisor.version]: [GenieZone]
+[ro.boot.hypervisor.vm.supported]: [1]
+```
+
 ### Install dependencies
 ```
 $ sudo apt install build-essential debootstrap qemu-user-static gcc-aarch64-linux-gnu atftpd nfs-kernel-server fdisk libcap-dev libgbm-dev pkg-config protobuf-compiler bc bison flex libssl-dev make libc6-dev libncurses5-dev crossbuild-essential-arm64
@@ -258,6 +266,13 @@ Build kernel with CONFIG_DRM=m, CONFIG_DRM_VIRTIO_GPU=y and make modules_install
 # chmod +x crosvm16
 # LD_PRELOAD=./libbinder_ndk.so:./libbinder.so ./crosvm16 run --disable-sandbox --gpu backend=virglrenderer,surfaceless=true,egl=true,gles=true,context-types=virgl2
 ```
+
+```
+[2026-08-20T13:03:16.472228659+00:00 INFO  crosvm::crosvm::sys::linux::device_helpers] Trying to attach block device: /data/data/com.termux/files/home/arch/arch-rootfs.img  [2026-08-20T13:03:16.472877351+00:00 INFO  disk] disk size 10737418240 Could not open module param file '/sys/module/mali_kbase/parameters/large_page_conf'
+[2026-08-20T13:03:16.775788736+00:00 INFO  rutabaga_gfx::virgl_renderer] gl_version 32 - es profile enabled
+
+[2026-08-20T13:03:16.808989274+00:00 ERROR devices::virtio::gpu] failed to open display: unsupported by the implementation
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x411fd050]
 
 ```
    OpenGL ES 2.x information:
