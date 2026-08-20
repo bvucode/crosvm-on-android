@@ -253,35 +253,63 @@ Use /tmp/guest_shared_dir and /data/data/com.termux/files/home/host_shared_dir
 
 ### GPU acceleration
 
-Android 15 required use Crosvm from Android 16 in Releases
+> [!NOTE]
+> **MediaTek Hypervisor Support**: Crosvm from Android 16 features native support for the MediaTek Geniezone hypervisor. It communicates directly with the `/dev/gzvm` driver out of the box, bypasssing the need for any additional Android Virtualization Framework (AVF) patches or wrappers for basic CPU and memory mapping.
 
-Debian and Ubuntu GUI with KasmVNC
+* Android 15 requires using Crosvm from Android 16 (available in Releases).
+* Provides Debian and Ubuntu GUI acceleration via KasmVNC.
 
-vncserver -hw3d -drinode /dev/dri/renderD128
+#### Prerequisites
 
-Build kernel with CONFIG_DRM=m, CONFIG_DRM_VIRTIO_GPU=y and make modules_install
+1. Build your guest kernel with the following options and run `make modules_install`:
+   ```ini
+   CONFIG_DRM=m
+   CONFIG_DRM_VIRTIO_GPU=y
+   ```
+2. Inside the guest OS, initialize the VNC server pointing to the virtual GPU node:
+   ```bash
+   vncserver -hw3d -drinode /dev/dri/renderD128
+   ```
 
-```
+#### Launching Crosvm with GPU
+
+Execute the following command as `root` inside Termux:
+
+```bash
 # su
 # chmod +x crosvm16
-# LD_PRELOAD=./libbinder_ndk.so:./libbinder.so ./crosvm16 run --disable-sandbox --gpu backend=virglrenderer,surfaceless=true,egl=true,gles=true,context-types=virgl2
+# LD_PRELOAD=./libbinder_ndk.so:./libbinder.so ./crosvm16 --log-level debug run --disable-sandbox --gpu backend=virglrenderer,surfaceless=true,egl=true,gles=true,context-types=virgl2
 ```
 
-```
-[2026-08-20T13:03:16.472228659+00:00 INFO  crosvm::crosvm::sys::linux::device_helpers] Trying to attach block device: /data/data/com.termux/files/home/arch/arch-rootfs.img  [2026-08-20T13:03:16.472877351+00:00 INFO  disk] disk size 10737418240 Could not open module param file '/sys/module/mali_kbase/parameters/large_page_conf'
-[2026-08-20T13:03:16.775788736+00:00 INFO  rutabaga_gfx::virgl_renderer] gl_version 32 - es profile enabled
+#### Expected Debug Output
 
-[2026-08-20T13:03:16.808989274+00:00 ERROR devices::virtio::gpu] failed to open display: unsupported by the implementation
+When running with `--log-level debug`, you should verify that Crosvm successfully catches the MediaTek hypervisor device and initializes the host GPU driver (`mali_kbase`):
+
+```text
+[2026-08-20T13:44:59.108618039+00:00 DEBUG crosvm::crosvm::sys::linux] creating hypervisor: Geniezone { device: Some("/dev/gzvm") }
+[2026-08-20T13:44:59.111563270+00:00 INFO  crosvm::crosvm::sys::linux::device_helpers] Trying to attach block device: /data/data/com.termux/files/home/arch/arch-rootfs.img
+[2026-08-20T13:44:59.111870962+00:00 INFO  disk] disk size 10737418240
+Could not open module param file '/sys/module/mali_kbase/parameters/large_page_conf'
+[2026-08-20T13:44:59.422502423+00:00 INFO  rutabaga_gfx::virgl_renderer] gl_version 32 - es profile enabled
+
+[2026-08-20T13:44:59.460083577+00:00 ERROR devices::virtio::gpu] failed to open display: unsupported by the implementation
+[2026-08-20T13:44:59.906966962+00:00 DEBUG devices::usb::xhci] xhci_controller: halt device
+[2026-08-20T13:44:59.907191039+00:00 DEBUG devices::usb::xhci] xhci_controller: interrupter enable?: false
 [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x411fd050]
 ```
 
-```
+#### Verified Guest Graphics Info
+
+Once booted, running diagnostic tools inside the guest OS will confirm that the rendering pipeline maps directly to your hardware (e.g., Mali GPU):
+
+```text
    OpenGL ES 2.x information:
       version: "OpenGL ES 3.1 Mesa 22.3.6"
       shading language version: "OpenGL ES GLSL ES 3.10"
       vendor: "Mesa/X.org"
       renderer: "virgl (Mali-G52 MC2)"
 ```
+
 
 ### Troubleshooting
 
