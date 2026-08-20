@@ -273,6 +273,7 @@ Build kernel with CONFIG_DRM=m, CONFIG_DRM_VIRTIO_GPU=y and make modules_install
 
 [2026-08-20T13:03:16.808989274+00:00 ERROR devices::virtio::gpu] failed to open display: unsupported by the implementation
 [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x411fd050]
+```
 
 ```
    OpenGL ES 2.x information:
